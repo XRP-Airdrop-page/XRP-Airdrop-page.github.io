@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /xrp-airdrop/
-Sitemap: https://ripple-airdrop.github.io/sitemap.xml
