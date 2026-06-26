@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Supported Blockchains & Asset Matrix</title>
+  <meta name="description" content="A directory of integrated chains, transaction times, and gas optimization layers.">
+  <link rel="canonical" href="https://xrp-airdrop-page.github.io/supported-chains/">
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Supported Blockchains & Asset Matrix">
+  <meta property="og:description" content="A directory of integrated chains, transaction times, and gas optimization layers.">
+  <meta property="og:url" content="https://xrp-airdrop-page.github.io/supported-chains/">
+  <meta property="og:image" content="https://xrp-airdrop-page.github.io/og-cover.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Supported Blockchains & Asset Matrix">
+  <meta name="twitter:description" content="A directory of integrated chains, transaction times, and gas optimization layers.">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <style>
+
+
+:root{
+  --bg:#08090D;
+  --panel:#101116;
+  --panel-2:#15161D;
+  --ink:#F8F4F6;
+  --muted:#A7A0A5;
+  --soft:#756D73;
+  --line:rgba(255,255,255,.08);
+  --line-strong:rgba(255,255,255,.08);
+  --accent:#E62058;
+  --accent-soft:rgba(230,32,88,.16);
+  --shadow:0 30px 70px -42px rgba(230,32,88,.72);
+  --max:1080px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  min-height:100dvh;
+  overflow:hidden;
+  background:
+    radial-gradient(60% 48% at 50% -18%, rgba(230,32,88,.18), transparent 66%),
+    var(--bg);
+  color:var(--ink);
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  display:flex;
+  flex-direction:column;
+}
+
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+h1,p{margin:0}
+h1{
+  font-size:clamp(2.55rem, 6vw, 4.45rem);
+  line-height:1.04;
+  letter-spacing:0;
+  font-weight:800;
+}
+
+.topbar{
+  flex:0 0 auto;
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:18px clamp(16px, 4vw, 40px);
+}
+
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+  font-size:1.08rem;
+  font-weight:800;
+}
+
+.brand img{
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  box-shadow:0 0 0 1px var(--line);
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  margin-left:18px;
+}
+
+.nav a{
+  color:var(--muted);
+  font-size:.93rem;
+  font-weight:500;
+  transition:color .15s ease;
+}
+
+.nav a:hover{color:var(--ink)}
+.spacer{flex:1}
+
+.ghost{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:9px 17px;
+  border:1px solid var(--line-strong);
+  border-radius:999px;
+  color:var(--ink);
+  background:rgba(255,255,255,.035);
+  font-size:.9rem;
+  font-weight:700;
+  white-space:nowrap;
+  transition:transform .12s ease, border-color .2s ease, background .2s ease;
+}
+
+.ghost:hover{
+  transform:translateY(-1px);
+  border-color:rgba(230,32,88,.48);
+  background:var(--accent-soft);
+}
+
+.stage{
+  flex:1 1 auto;
+  min-height:0;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+  padding:12px clamp(16px, 4vw, 40px);
+  text-align:center;
+}
+
+.hero{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.sub{
+  max-width:56ch;
+  margin-top:14px;
+  color:var(--muted);
+  font-size:clamp(1rem, 1.5vw, 1.16rem);
+}
+
+.sub strong{
+  color:var(--ink);
+  font-weight:800;
+  box-shadow:inset 0 -.46em 0 var(--accent-soft);
+}
+
+.card{
+  width:min(500px, 100%);
+  padding:18px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02)), var(--panel);
+  box-shadow:var(--shadow);
+  transition:border-color .18s ease, transform .18s ease;
+}
+
+.card.is-ready{
+  border-color:rgba(230,32,88,.34);
+  transform:translateY(-1px);
+}
+
+.status{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:34px;
+  margin-bottom:12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  color:var(--ink);
+  background:rgba(230,32,88,.08);
+  font-size:.82rem;
+  font-weight:700;
+}
+
+.status-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 18px rgba(230,32,88,.88);
+}
+
+.rows{
+  display:grid;
+  gap:10px;
+}
+
+.row,
+.wallet{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  min-height:58px;
+  padding:12px 14px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--panel-2);
+  text-align:left;
+}
+
+.label{
+  color:var(--soft);
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.value{
+  color:var(--ink);
+  font-weight:800;
+}
+
+.token{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  color:var(--ink);
+  font-weight:800;
+}
+
+.token img{
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  box-shadow:0 0 0 1px var(--line);
+}
+
+.wallet input{
+  width:100%;
+  max-width:250px;
+  border:0;
+  outline:0;
+  padding:0;
+  background:transparent;
+  color:var(--ink);
+  font:inherit;
+  font-weight:700;
+  text-align:right;
+}
+
+.act{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:100%;
+  min-height:52px;
+  margin-top:14px;
+  border-radius:14px;
+  background:var(--accent);
+  color:#fff;
+  font-size:1.04rem;
+  font-weight:800;
+  box-shadow:0 18px 34px -24px rgba(230,32,88,.95);
+  transition:transform .12s ease, background .18s ease;
+}
+
+.act:hover{
+  transform:translateY(-1px);
+  background:var(--accent);
+}
+
+.note{
+  margin-top:11px;
+  color:var(--soft);
+  font-size:.78rem;
+}
+
+.foot{
+  flex:0 0 auto;
+  padding:16px 24px 22px;
+  color:var(--soft);
+  text-align:center;
+  font-size:.84rem;
+}
+
+.foot b{
+  color:var(--muted);
+  font-weight:700;
+}
+
+@media(max-width:700px){
+  .topbar{
+    padding:14px 16px;
+    gap:10px;
+  }
+
+  .nav{display:none}
+
+  .brand span{
+    max-width:84px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+
+  .ghost{
+    min-height:36px;
+    padding:8px 14px;
+    font-size:.86rem;
+  }
+
+  .stage{
+    gap:18px;
+    padding:6px 16px;
+  }
+
+  .sub{
+    max-width:34ch;
+    margin-top:10px;
+    font-size:.96rem;
+  }
+
+  .card{
+    padding:14px;
+    border-radius:18px;
+  }
+
+  .row,
+  .wallet{
+    min-height:52px;
+    padding:10px 12px;
+  }
+
+  .wallet input{
+    max-width:190px;
+    font-size:.94rem;
+  }
+
+  .act{
+    min-height:48px;
+    margin-top:12px;
+  }
+
+  .foot{
+    padding:12px 16px 14px;
+  }
+}
+
+@media(max-width:380px){
+  h1{font-size:2.38rem}
+  .sub{font-size:.92rem}
+  .note{font-size:.74rem}
+}
+
+
+  
+
+/* --- Satellite Layout Styles (Appended dynamically by Builder) --- */
+:root {
+  --bg-fallback: var(--bg, var(--base, #f9fafc));
+  --ink-body-fallback: var(--ink-body, var(--text, var(--ink, #1f2937)));
+  --muted-fallback: var(--muted, var(--quiet, #4b5563));
+  --panel-fallback: var(--panel, var(--surface, #ffffff));
+  --panel-strong-fallback: var(--panel-strong, var(--surface-soft, var(--base-deep, #f3f4f6)));
+  --line-fallback: var(--line, rgba(0, 0, 0, 0.08));
+  --line-strong-fallback: var(--line-strong, rgba(0, 0, 0, 0.14));
+  --accent-fallback: var(--accent, #625bf3);
+}
+
+body {
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100dvh;
+}
+
+.satellite-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  width: 100%;
+}
+
+.breadcrumb {
+  font-size: 0.875rem;
+  color: var(--muted-fallback);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumb a {
+  color: var(--muted-fallback);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--accent-fallback);
+}
+
+.satellite-title {
+  font-size: clamp(2.1rem, 5.5vw, 2.9rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  color: var(--ink-body-fallback);
+}
+
+.satellite-lead {
+  font-size: 1.125rem;
+  color: var(--muted-fallback);
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.satellite-lead strong {
+  color: var(--ink-body-fallback);
+}
+
+.section-block {
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.section-block h2 {
+  font-size: 1.55rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  color: var(--ink-body-fallback);
+  border-bottom: 1px solid var(--line-fallback);
+  padding-bottom: 8px;
+}
+
+.section-block h3 {
+  font-size: 1.2rem;
+  font-weight: 650;
+  margin: 24px 0 12px;
+  color: var(--ink-body-fallback);
+}
+
+.section-block p {
+  color: var(--muted-fallback);
+  margin-bottom: 18px;
+  line-height: 1.7;
+}
+
+.section-block p strong {
+  color: var(--ink-body-fallback);
+}
+
+.section-block ul, .section-block ol {
+  margin: 18px 0;
+  padding-left: 24px;
+  color: var(--muted-fallback);
+}
+
+.section-block li {
+  margin-bottom: 8px;
+  line-height: 1.65;
+}
+
+.section-block li strong {
+  color: var(--ink-body-fallback);
+}
+
+/* Info Grid Cards */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+  margin: 24px 0;
+}
+
+.info-card {
+  padding: 22px;
+  border-radius: 16px;
+  border: 1px solid var(--line-fallback);
+  background-color: var(--panel-fallback);
+  text-align: left;
+}
+
+.info-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: var(--ink-body-fallback);
+}
+
+.info-card p {
+  font-size: 0.9rem;
+  color: var(--muted-fallback);
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* Tables */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--line-fallback);
+  background-color: var(--panel-fallback);
+  margin: 28px 0;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.925rem;
+  text-align: left;
+}
+
+.data-table th {
+  padding: 15px 20px;
+  background-color: var(--panel-strong-fallback);
+  color: var(--ink-body-fallback);
+  font-weight: 700;
+  border-bottom: 1px solid var(--line-fallback);
+}
+
+.data-table td {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--line-fallback);
+  color: var(--muted-fallback);
+}
+
+.data-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.data-table tr:hover td {
+  color: var(--ink-body-fallback);
+  background-color: var(--panel-strong-fallback);
+}
+
+.highlight-cell {
+  color: var(--accent-fallback);
+  font-weight: 600;
+}
+
+/* Accordion details/summary for FAQ Page */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 28px 0;
+}
+
+.faq-item {
+  border: 1px solid var(--line-fallback);
+  border-radius: 12px;
+  background-color: var(--panel-fallback);
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+  text-align: left;
+}
+
+.faq-item[open] {
+  border-color: var(--line-strong-fallback);
+}
+
+.faq-item summary {
+  padding: 20px 24px;
+  font-weight: 650;
+  font-size: 1.05rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  color: var(--ink-body-fallback);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  font-size: 1.3rem;
+  color: var(--muted-fallback);
+  transition: transform 0.2s ease;
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+  color: var(--accent-fallback);
+}
+
+.faq-item summary:hover {
+  background-color: var(--panel-strong-fallback);
+}
+
+.faq-content {
+  padding: 0 24px 22px;
+  font-size: 0.95rem;
+  color: var(--muted-fallback);
+  line-height: 1.65;
+}
+
+/* Back Link Button */
+.back-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 40px;
+  padding: 12px 24px;
+  background-color: var(--panel-fallback);
+  border: 1px solid var(--line-fallback);
+  border-radius: 9999px;
+  font-size: 0.925rem;
+  font-weight: 600;
+  color: var(--ink-body-fallback);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.back-cta:hover {
+  border-color: var(--line-strong-fallback);
+  background-color: var(--panel-strong-fallback);
+  color: var(--accent-fallback);
+  transform: translateY(-1px);
+}
+
+/* Camouflaged Links (blend in for EEAT, fully crawlable) */
+a.inline {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1.5px dashed var(--line-strong-fallback);
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+a.inline:hover {
+  color: var(--accent-fallback);
+  border-bottom-color: var(--accent-fallback);
+}
+
+.footer {
+  text-align: center !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 40px auto 0 !important;
+  padding: 20px 0 !important;
+}
+
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://xrp-airdrop-page.github.io/#website",
+      "url": "https://xrp-airdrop-page.github.io/",
+      "name": "XRP Airdrop"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://xrp-airdrop-page.github.io/supported-chains/#webpage",
+      "url": "https://xrp-airdrop-page.github.io/supported-chains/",
+      "name": "Supported Blockchains & Asset Matrix",
+      "isPartOf": {
+        "@id": "https://xrp-airdrop-page.github.io/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://xrp-airdrop-page.github.io/supported-chains/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://xrp-airdrop-page.github.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Supported Blockchains & Asset Matrix"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../" aria-label="XRP Airdrop">
+      <img src="../favicon.png" width="30" height="30" alt="">
+      <span>XRP Airdrop</span>
+    </a>
+    <nav class="nav" aria-label="Main Navigation">
+      <a href="../how-it-works/" >How it works</a>
+      <a href="../faq/" >FAQ</a>
+      <a href="../about/" >About</a>
+      <a href="../security/" >Security</a>
+      <a href="../supported-chains/" class="active">Supported Chains</a>
+    </nav>
+    <span class="spacer"></span>
+    <a class="open-app" href="../dashboard/" rel="noopener noreferrer">Open app</a>
+  </header>
+
+  <main class="satellite-container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Home</a> › <span>Supported Blockchains & Asset Matrix</span>
+    </nav>
+
+    <h1 class="satellite-title">Supported Blockchains & Asset Matrix</h1>
+    <p class="satellite-lead">A directory of integrated chains, transaction times, and gas optimization layers.</p>
+
+    
+    <div class="section-block">
+      <h2>Supported Blockchains</h2>
+      <p>The portal connects to multiple blockchain ecosystems to route transactions efficiently, verified against the <a class="inline" href="https://coinmarketcap.com/" target="_blank" rel="noopener noreferrer">CoinMarketCap rankings</a> matrix:</p>
+    </div>
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Supported Chain</th><th>Validation Model</th><th>Execution Style</th><th>Security Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Ethereum Mainnet</td><td>Proof of Stake (PoS)</td><td>Validated on-chain</td><td>Secure validation</td></tr><tr><td>Arbitrum Network</td><td>Optimistic Rollup</td><td>Compressed validation</td><td>Layer-2 scaling</td></tr><tr><td>Solana Network</td><td>Proof of History (PoH)</td><td>Parallel validation</td><td>High throughput</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section-block">
+      <h2>Layer-2 Scaling Integration</h2>
+      <p>To avoid high gas fees, the system integrates with L2 rollups and sidechains. This allows fast transaction validation while maintaining the security of the underlying L1 network.</p>
+    </div>
+
+    <div style="margin: 40px 0; display: flex; justify-content: flex-start;">
+      <a class="open-app" href="../dashboard/" style="max-width: 320px; display: inline-flex; justify-content: center; text-decoration: none; padding: 12px 24px; font-weight: 700;">Open XRP Airdrop Portal</a>
+    </div>
+
+    <a class="back-cta" href="../">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Portal
+    </a>
+  </main>
+
+  <footer class="footer">
+    <p class="disc" style="font-size: 0.78rem; opacity: 0.7; max-width: 650px; margin: 0 auto; line-height: 1.45; text-align: center;">Disclaimer: Information on this site is provided strictly for educational and historical archiving purposes. XRP Airdrop is a reference template. All product names, logos, and brands are property of their respective owners.</p>
+  </footer>
+</body>
+</html>
